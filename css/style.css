@@ -18,3 +18,17 @@ header {
   text-align: center;
   color: #155724;
 }
+.contenido {
+  display: flex;
+  align-items: center;
+}
+.formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.gastos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
