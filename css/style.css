@@ -59,14 +59,14 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 30px;
+  width: 400px;
 }
 .balance {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  width: 350px;
 }
 .presupuesto-actual {
   padding: 15px;
@@ -76,13 +76,23 @@ header {
   font-weight: bold;
   background-color: rgb(204, 229, 255);
 }
-.restante {
+.presupuesto-restante {
   padding: 15px;
   border: solid 2px #bdbdbd;
   border-radius: 10px;
   color: #155724;
   font-weight: bold;
   background-color: rgba(212, 237, 218, 1);
+}
+.lista-gastos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  border: solid 2px #bdbdbd;
+  border-radius: 10px;
+  background-color: #f2f2f2;
 }
 input[type="text"],
 input[type="number"] {
