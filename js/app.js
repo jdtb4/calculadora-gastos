@@ -4,6 +4,7 @@ const gastolistado = document.querySelector("#lista-gastos ul");
 const gastosDiv = document.querySelector(".gastos");
 const errorPresupuesto = document.querySelector(".error-presupuesto");
 const errorGasto = document.querySelector(".error-gasto");
+const gastoCorrecto = document.querySelector(".gasto-correcto");
 
 //Eventos
 
@@ -13,6 +14,11 @@ class Presupuesto {
     this.presupuesto = Number(presupuesto);
     this.restante = Number(presupuesto);
     this.gastos = [];
+  }
+
+  nuevoGasto(gasto) {
+    this.gastos = [...this.gastos, gasto];
+    console.log(this.gastos);
   }
 }
 
@@ -38,10 +44,15 @@ class UI {
       errorGasto.innerHTML = mensaje;
       errorGasto.style.display = "block";
     }
+    if (tipo === "gasto-correcto") {
+      gastoCorrecto.innerHTML = mensaje;
+      gastoCorrecto.style.display = "block";
+    }
     //Quitar el mensaje de alerta
     setTimeout(() => {
       errorPresupuesto.style.display = "none";
       errorGasto.style.display = "none";
+      gastoCorrecto.style.display = "none";
     }, 3000);
   }
 }
@@ -70,7 +81,7 @@ function agregarPresupuesto() {
 function agregarGasto() {
   //Leer los datos del formulario
   const nombre = document.querySelector("#gasto-usuario").value;
-  const cantidad = document.querySelector("#cantidad-usuario").value;
+  const cantidad = Number(document.querySelector("#cantidad-usuario").value);
   //Validacion de datos
   if (nombre === "" || cantidad === "") {
     ui.imprimirAlerta("Ambos campos son obligatorios", "error-gasto");
@@ -78,5 +89,15 @@ function agregarGasto() {
   } else if (cantidad <= 0) {
     ui.imprimirAlerta("Cantidad no valida", "error-gasto");
     return;
+  } else {
+    ui.imprimirAlerta("Gasto agregado correctamente", "gasto-correcto");
   }
+  //Generar un objeto con el gasto
+  const gasto = { nombre, cantidad, id: Date.now() };
+  //Añade un nuevo gasto
+  presupuesto.nuevoGasto(gasto);
+
+  formulario.reset();
+
+  console.log(gasto);
 }

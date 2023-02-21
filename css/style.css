@@ -131,3 +131,12 @@ button[type="submit"]:hover {
   text-align: center;
   display: none;
 }
+.gasto-correcto {
+  background-color: rgba(212, 237, 218, 1);
+  color: #599e69;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #7bd490;
+  text-align: center;
+  display: none;
+}
