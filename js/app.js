@@ -29,20 +29,20 @@ class UI {
   }
 
   imprimirAlerta(mensaje, tipo) {
-    //Crear el div
-    const divMensaje = document.createElement("div");
-
+    //Añade el mensaje de error dependiendo del tipo
     if (tipo === "error-presupuesto") {
       errorPresupuesto.innerHTML = mensaje;
       errorPresupuesto.style.display = "block";
     }
-
     if (tipo === "error-gasto") {
       errorGasto.innerHTML = mensaje;
       errorGasto.style.display = "block";
     }
-    //Mensaje de error
-    divMensaje.textContent = mensaje;
+    //Quitar el mensaje de alerta
+    setTimeout(() => {
+      errorPresupuesto.style.display = "none";
+      errorGasto.style.display = "none";
+    }, 3000);
   }
 }
 
@@ -60,11 +60,9 @@ function agregarPresupuesto() {
     ui.imprimirAlerta("Presupuesto no valido", "error-presupuesto");
     return;
   }
-
   //Presupuesto valido
   presupuesto = new Presupuesto(prespuestoUsuario);
   console.log(presupuesto);
-
   //Inyectar en el HTML
   ui.insertarPresupuesto(presupuesto);
 }
@@ -73,10 +71,12 @@ function agregarGasto() {
   //Leer los datos del formulario
   const nombre = document.querySelector("#gasto-usuario").value;
   const cantidad = document.querySelector("#cantidad-usuario").value;
-
   //Validacion de datos
   if (nombre === "" || cantidad === "") {
     ui.imprimirAlerta("Ambos campos son obligatorios", "error-gasto");
+    return;
+  } else if (cantidad <= 0) {
+    ui.imprimirAlerta("Cantidad no valida", "error-gasto");
     return;
   }
 }
