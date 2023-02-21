@@ -15,6 +15,7 @@
       <section class="contenido">
         <form id="formulario" class="formulario" action="#">
           <div class="presupuesto">
+            <span id="error-presupuesto" class="error-presupuesto"></span>
             <label for="presupuesto">Introduce el presupuesto:</label>
             <input type="number" id="presupuesto" placeholder="2000 €" />
             <button
@@ -26,6 +27,7 @@
             </button>
           </div>
           <div class="gastos">
+            <span id="error-gasto" class="error-gasto"></span>
             <label for="gastos">Gasto:</label>
             <input type="text" id="gasto-usuario" placeholder="Ej: Comida" />
             <label for="cantidad">Cantidad:</label>
@@ -34,7 +36,13 @@
               id="cantidad-usuario"
               placeholder="Cantidad en €"
             />
-            <button type="submit" class="agregar-gasto">Agregar</button>
+            <button
+              type="submit"
+              class="agregar-gasto"
+              onclick="agregarGasto()"
+            >
+              Agregar
+            </button>
           </div>
         </form>
         <div class="datos">

@@ -1,12 +1,11 @@
 //Variables y selectores
 const formulario = document.querySelector("#formulario");
 const gastolistado = document.querySelector("#lista-gastos ul");
+const gastosDiv = document.querySelector(".gastos");
+const errorPresupuesto = document.querySelector(".error-presupuesto");
+const errorGasto = document.querySelector(".error-gasto");
 
 //Eventos
-eventListeners();
-function eventListeners() {
-  formulario.addEventListener("submit", agregarGasto);
-}
 
 //Clases
 class Presupuesto {
@@ -33,16 +32,17 @@ class UI {
     //Crear el div
     const divMensaje = document.createElement("div");
 
-    if (tipo === "error") {
-      divMensaje.classList.add("error");
-    } else {
-      divMensaje.classList.add("correcto");
+    if (tipo === "error-presupuesto") {
+      errorPresupuesto.innerHTML = mensaje;
+      errorPresupuesto.style.display = "block";
+    }
+
+    if (tipo === "error-gasto") {
+      errorGasto.innerHTML = mensaje;
+      errorGasto.style.display = "block";
     }
     //Mensaje de error
     divMensaje.textContent = mensaje;
-
-    //Insertar en el HTML
-    document.querySelector(".contenido").insertBefore(divMensaje, formulario);
   }
 }
 
@@ -57,7 +57,7 @@ function agregarPresupuesto() {
 
   //Validar el presupuesto
   if (prespuestoUsuario === "" || prespuestoUsuario <= 0) {
-    console.log("Presupuesto no valido");
+    ui.imprimirAlerta("Presupuesto no valido", "error-presupuesto");
     return;
   }
 
@@ -69,15 +69,14 @@ function agregarPresupuesto() {
   ui.insertarPresupuesto(presupuesto);
 }
 
-function agregarGasto(e) {
-  e.preventDefault();
+function agregarGasto() {
   //Leer los datos del formulario
   const nombre = document.querySelector("#gasto-usuario").value;
   const cantidad = document.querySelector("#cantidad-usuario").value;
 
   //Validacion de datos
   if (nombre === "" || cantidad === "") {
-    ui.imprimirAlerta("Ambos campos son obligatorios", "error");
+    ui.imprimirAlerta("Ambos campos son obligatorios", "error-gasto");
     return;
   }
 }

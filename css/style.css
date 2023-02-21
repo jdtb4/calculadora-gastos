@@ -119,3 +119,13 @@ button[type="submit"]:hover {
   background-color: rgb(94, 94, 255);
   color: white;
 }
+
+.error-gasto,
+.error-presupuesto {
+  background-color: #ec7063;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  display: none;
+}
