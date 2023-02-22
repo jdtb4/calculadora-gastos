@@ -1,7 +1,6 @@
 //Variables y selectores
 const formulario = document.querySelector("#formulario");
-const gastolistado = document.querySelector("#lista-gastos ul");
-const gastosDiv = document.querySelector(".gastos");
+const gastoListado = document.querySelector("#lista-gastos ul");
 const errorPresupuesto = document.querySelector(".error-presupuesto");
 const errorGasto = document.querySelector(".error-gasto");
 const gastoCorrecto = document.querySelector(".gasto-correcto");
@@ -55,6 +54,30 @@ class UI {
       gastoCorrecto.style.display = "none";
     }, 3000);
   }
+
+  //Inserta los gastos a la lista
+  insertarGastoLista(gastos) {
+    //Iterar sobre los gastos
+    gastos.forEach((gasto) => {
+      const { nombre, cantidad, id } = gasto;
+      //Crear un LI
+      const span = document.createElement("li");
+      span.textContent = `${nombre} ${cantidad} €`;
+      span.dataset.id = id;
+
+      //Añade el HTML del º
+      //nuevoGasto.innerHTML = `${nombre} <span class="gasto">${cantidad}€</span>`;
+
+      //Boton para borrar el gasto
+      // const btnBorrar = document.createElement("button");
+      // btnBorrar.textContent = "X";
+
+      //Insertar al HTML
+      gastoListado.appendChild(span);
+      // //Insertar boton de borrar al gasto
+      // nuevoGasto.appendChild(btnBorrar);
+    });
+  }
 }
 
 //Instancias
@@ -96,8 +119,11 @@ function agregarGasto() {
   const gasto = { nombre, cantidad, id: Date.now() };
   //Añade un nuevo gasto
   presupuesto.nuevoGasto(gasto);
-
+  //Reinicio el formulario
   formulario.reset();
+  //Imprimir los gastos
+  const { gastos } = presupuesto;
+  ui.insertarGastoLista(gastos);
 
   console.log(gasto);
 }
