@@ -27,6 +27,11 @@ class Presupuesto {
     );
     this.restante = this.presupuesto - gastado;
   }
+
+  eliminarGasto(id) {
+    this.gastos = this.gastos.filter((gasto) => gasto.id !== id);
+    this.calcularRestante();
+  }
 }
 
 //Clase de interfaz maneja todo lo relacionado al HTML
@@ -92,6 +97,9 @@ class UI {
       btnBorrar.style.border = "1px solid #ff7869";
       btnBorrar.style.borderRadius = "5px";
       btnBorrar.style.cursor = "pointer";
+      btnBorrar.onclick = () => {
+        eliminarGasto(id);
+      };
 
       //Insertar al HTML
       gastoListado.appendChild(nuevoGasto);
@@ -126,11 +134,10 @@ function agregarPresupuesto() {
   }
   //Presupuesto valido
   presupuesto = new Presupuesto(prespuestoUsuario);
-  console.log(presupuesto);
   //Inyectar en el HTML
   ui.insertarPresupuesto(presupuesto);
 }
-
+//Agrega gastos a la lista
 function agregarGasto() {
   //Leer los datos del formulario
   const nombre = document.querySelector("#gasto-usuario").value;
@@ -154,7 +161,16 @@ function agregarGasto() {
   //Imprimir los gastos
   const { gastos, restante } = presupuesto;
   ui.insertarGastoLista(gastos);
+  //Actualizar el restante
   ui.actualizarRestante(restante);
-
-  console.log(gasto);
+}
+//Elimina un gasto
+function eliminarGasto(id) {
+  //Elimina los gastos del objeto
+  presupuesto.eliminarGasto(id);
+  //Elimina los gastos del HTML
+  const { gastos, restante } = presupuesto;
+  ui.insertarGastoLista(gastos);
+  //Actualizar el restante
+  ui.actualizarRestante(restante);
 }
