@@ -57,26 +57,44 @@ class UI {
 
   //Inserta los gastos a la lista
   insertarGastoLista(gastos) {
+    //Limpiar el HTML
+    this.limpiarHTML();
     //Iterar sobre los gastos
     gastos.forEach((gasto) => {
       const { nombre, cantidad, id } = gasto;
       //Crear un LI
-      const span = document.createElement("li");
-      span.textContent = `${nombre} ${cantidad} €`;
-      span.dataset.id = id;
-
-      //Añade el HTML del º
-      //nuevoGasto.innerHTML = `${nombre} <span class="gasto">${cantidad}€</span>`;
+      const nuevoGasto = document.createElement("li");
+      //Añadir el HTML
+      nuevoGasto.textContent = `${nombre} ${cantidad} €   `;
+      nuevoGasto.dataset.id = id;
+      //Añadir el estilo al gasto
+      // nuevoGasto.style.fontWeight = "bold";
+      nuevoGasto.style.color = "#155724";
+      nuevoGasto.style.display = "flex";
+      nuevoGasto.style.justifyContent = "space-between";
+      nuevoGasto.style.alignItems = "center";
 
       //Boton para borrar el gasto
-      // const btnBorrar = document.createElement("button");
-      // btnBorrar.textContent = "X";
+      const btnBorrar = document.createElement("button");
+      btnBorrar.textContent = "Borrar X";
+      //Añadir el estilo al boton
+      btnBorrar.style.padding = "5px";
+      btnBorrar.style.color = "white";
+      btnBorrar.style.background = "#ff978c";
+      btnBorrar.style.border = "1px solid #ff7869";
+      btnBorrar.style.borderRadius = "5px";
+      btnBorrar.style.cursor = "pointer";
 
       //Insertar al HTML
-      gastoListado.appendChild(span);
-      // //Insertar boton de borrar al gasto
-      // nuevoGasto.appendChild(btnBorrar);
+      gastoListado.appendChild(nuevoGasto);
+      nuevoGasto.appendChild(btnBorrar);
     });
+  }
+  //Limpiar el HTML
+  limpiarHTML() {
+    while (gastoListado.firstChild) {
+      gastoListado.removeChild(gastoListado.firstChild);
+    }
   }
 }
 

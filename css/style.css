@@ -34,7 +34,6 @@ header {
 .presupuesto {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 20px;
   gap: 15px;
   font-weight: bold;
@@ -46,7 +45,6 @@ header {
 .gastos {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   padding: 20px;
   gap: 15px;
   font-weight: bold;
@@ -58,14 +56,12 @@ header {
 .datos {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 30px;
   width: 400px;
 }
 .balance {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: 20px;
 }
 .presupuesto-actual {
@@ -85,19 +81,10 @@ header {
   background-color: rgba(212, 237, 218, 1);
 }
 .lista-gastos {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
   padding: 15px;
   border: solid 2px #bdbdbd;
   border-radius: 10px;
   background-color: #f2f2f2;
-}
-.gasto {
-  text-align: center;
-  background-color: #f2f2f2;
-  list-style: none;
 }
 input[type="text"],
 input[type="number"] {
